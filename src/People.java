@@ -15,10 +15,12 @@ public class People {
         HashMap<String, ArrayList<Person>> countryPeople = new HashMap<>();
         readFile(countryPeople);
         //countryPeople = readFile();
+        sortByNames(countryPeople);
+//        for (ArrayList<Person> persons : countryPeople.values()) {
+//            Collections.sort(persons);
+//        }
 
-        for (ArrayList<Person> persons : countryPeople.values()) {
-            Collections.sort(persons);
-        }
+
 
 
 
@@ -26,7 +28,7 @@ public class People {
 
         saveJson(countryPeople);
 
-        String s = new String();
+        String s = new String(); //string formatting
         for (String country : countryPeople.keySet()){
             for (Person p : countryPeople.get(country)) {
                 s += p.formatPerson();
@@ -34,6 +36,11 @@ public class People {
         }
         System.out.println(s);
 
+    }
+    public static void sortByNames(HashMap<String, ArrayList<Person>> mapToBeSorted){
+        for (ArrayList<Person> persons : mapToBeSorted.values()) {
+            Collections.sort(persons);
+        }
     }
 
 
@@ -57,7 +64,6 @@ public class People {
         Person p = new Person(Integer.valueOf(columns[0]), columns[1], columns[2], columns[3], columns[4], columns[5]);//moved values into an object
         if (!countryPeople.containsKey(p.country)) {
             countryPeople.put(p.country, new ArrayList<>());
-
         }
         countryPeople.get(p.country).add(p); //pass in person to array list
     }

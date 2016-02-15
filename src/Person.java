@@ -37,8 +37,15 @@ public class Person implements Comparable {
 
     @Override //automatically makes use of built in methods
     public int compareTo(Object o) {
-        Person p = (Person) o; //from no on treat as email object. have access to three fields in email class
-        return lastName.compareTo(p.lastName); //compare two destinations
+        Person p = (Person) o;
+        if (lastName.equalsIgnoreCase(p.lastName)) {
+            return firstName.compareTo(p.firstName);
+        }
+        else {
+            return lastName.compareTo(p.lastName);
+        }
+
+
     }
 
     public int getId() {
