@@ -55,18 +55,18 @@ public class People {
 
     }
     public static void readFile(HashMap<String, ArrayList<Person>> countryPeople) throws FileNotFoundException {
-    File f = new File("people.csv"); //read file
-    Scanner scanner = new Scanner(f);
-    scanner.nextLine(); //skip over first line(doesn't contain data
-    while (scanner.hasNext()) {
-        String line = scanner.nextLine(); // grab a line and read it;
-        String[] columns = line.split(","); //split into columns
-        Person p = new Person(Integer.valueOf(columns[0]), columns[1], columns[2], columns[3], columns[4], columns[5]);//moved values into an object
-        if (!countryPeople.containsKey(p.country)) {
-            countryPeople.put(p.country, new ArrayList<>());
+        File f = new File("people.csv"); //read file
+        Scanner scanner = new Scanner(f);
+        scanner.nextLine(); //skip over first line(doesn't contain data
+        while (scanner.hasNext()) {
+            String line = scanner.nextLine(); // grab a line and read it;
+            String[] columns = line.split(","); //split into columns
+            Person p = new Person(Integer.valueOf(columns[0]), columns[1], columns[2], columns[3], columns[4], columns[5]);//moved values into an object
+            if (!countryPeople.containsKey(p.country)) {
+                countryPeople.put(p.country, new ArrayList<>());
+            }
+            countryPeople.get(p.country).add(p); //pass in person to array list
         }
-        countryPeople.get(p.country).add(p); //pass in person to array list
-    }
 
     }
 //public static HashMap<String, ArrayList<Person>> readFile() throws FileNotFoundException {
